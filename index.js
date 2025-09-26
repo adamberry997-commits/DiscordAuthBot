@@ -46,14 +46,15 @@ client.on("messageCreate", async (message) => {
     }
 
     try {
-      const res = await fetch(${process.env.AUTH_URL}/generate, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-       adminKey: process.env.ADMIN_KEY,
-       userId: userId
+      const res = await fetch(`${process.env.AUTH_URL}/generate`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    adminKey: process.env.ADMIN_KEY,
+    userId: message.author.id,
   }),
 });
+
 
       const data = await res.json();
       if (data.error) {
